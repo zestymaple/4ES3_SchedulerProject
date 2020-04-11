@@ -30,9 +30,14 @@ var EDD_Schedule_Tbody = document.getElementById('EDD_Schedule');
 var EDD_Schedule_Lateness_Tbody = document.getElementById('EDD_Schedule_Lateness');
 
 
-// window.addEventListener('load', (e) => {
-//     EDD_UpdateTasksTable();
-// });
+window.addEventListener('load', (e) => {
+    // EDD_UpdateTasksTable();
+
+    // Clear form fields
+    EDD_AddTask_Form.reset();
+    // Clear schedule + lateness
+    EDD_ClearTables(true, true, true);
+});
 
 EDD_AddTask_Form.addEventListener('submit', (e) => {
     // Prevent normal submission of form
