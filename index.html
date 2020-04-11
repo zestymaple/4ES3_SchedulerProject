@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Scheduler Project</title>
+  </head>
+  <body>
+    <div class="container">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-EDD-tab" data-toggle="pill" href="#pills-EDD" role="tab" aria-controls="pills-EDD" aria-selected="true">EDD</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-EDF-tab" data-toggle="pill" href="#pills-EDF" role="tab" aria-controls="pills-EDF" aria-selected="false">EDF</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-cyclic-tab" data-toggle="pill" href="#pills-cyclic" role="tab" aria-controls="pills-cyclic" aria-selected="false">Cyclic</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-RM-tab" data-toggle="pill" href="#pills-RM" role="tab" aria-controls="pills-RM" aria-selected="false">RM</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-EDD" role="tabpanel" aria-labelledby="pills-EDD-tab">
+                <h1 class="my-2">Add Tasks</h1>
+                <form id="EDD_AddTask">
+                    <div class="form-group">
+                      <label for="EDD_computationTime">Computation Time</label>
+                      <input type="number" min="0" step="0.1" class="form-control" id="EDD_computationTime" name="EDD_computationTime" aria-describedby="EDD_computationTimeHelp" required>
+                      <small id="EDD_computationTimeHelp" class="form-text text-muted">worst-case computation time</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="deadline">Deadline</label>
+                      <input type="number" min="0" step="0.1" class="form-control" id="deadline" name="deadline" aria-describedby="deadlineHelp" required>
+                      <small id="deadlineHelp" class="form-text text-muted">when is the task due</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                    <button id="EDD_ClearTasks" class="btn btn-danger">Delete All</button>
+                </form>
+                <h1 class="my-2">Tasks</h1>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">CT</th>
+                        <th scope="col">DT</th>
+                        <th scope="col">Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody id="EDD_Tasks">
+                    </tbody>
+                </table>
+                <h1 class="my-2">Schedule</h1>
+                <button class="btn btn-primary my-2" id="EDD_calcSchedule">Calculate Schedule</button>
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Time</th>
+                          <th scope="col">Task</th>
+                        </tr>
+                      </thead>
+                      <tbody id="EDD_Schedule">
+                      </tbody>
+                </table>
+                <h1 class="my-2">Task Lateness</h1>
+                <table class="table table-bordered table-striped">
+                  <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Task</th>
+                        <th scope="col">Lateness</th>
+                      </tr>
+                    </thead>
+                    <tbody id="EDD_Schedule_Lateness">
+                    </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="pills-EDF" role="tabpanel" aria-labelledby="pills-EDF-tab">...</div>
+            <div class="tab-pane fade" id="pills-cyclic" role="tabpanel" aria-labelledby="pills-cyclic-tab">...</div>
+            <div class="tab-pane fade" id="pills-RM" role="tabpanel" aria-labelledby="pills-RM-tab">...</div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Scheduler Scripts -->
+    <script src="./Scripts/EDD.js"></script>
+    <script src="./Scripts/EDF.js"></script>
+    <script src="./Scripts/Cyclic.js"></script>
+    <script src="./Scripts/RM.js"></script>
+  </body>
+</html>
