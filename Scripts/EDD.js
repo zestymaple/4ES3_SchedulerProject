@@ -43,6 +43,8 @@ EDD_AddTask_Form.addEventListener('submit', (e) => {
     // var lastTask = EDD_Tasks.length > 0 ? EDD_Tasks[EDD_Tasks.length - 1].t : 0;
     // Add the task to array
     EDD_Tasks.push({ "ct": parseInt(formData.get('EDD_computationTime')), "dt": parseInt(formData.get('deadline')) })
+    // Clear form fields
+    EDD_AddTask_Form.reset();
     // Refresh the table
     EDD_UpdateTasksTable();
 });
@@ -58,8 +60,6 @@ function EDD_RemoveTask(idx) {
     EDD_Tasks.splice(idx, 1);
     // Refresh the table
     EDD_UpdateTasksTable();
-    // Update Schedule
-    EDD_UpdateSchedule();    
 }
 
 EDD_ClearTasks_Button.addEventListener("click", (e) => {
@@ -67,13 +67,11 @@ EDD_ClearTasks_Button.addEventListener("click", (e) => {
     EDD_Tasks = [];
     // Refresh the table
     EDD_UpdateTasksTable();
-    // Update Schedule
-    EDD_UpdateSchedule();
 });
 
 function EDD_UpdateTasksTable() {
-    // Clear current tasks table
-    EDD_Tasks_Tbody.innerHTML = "";
+    // Clear tasks
+    EDD_ClearTables(true, true, true);
     // Add a new row for each task in the "EDD_Tasks" array
     EDD_Tasks.forEach((t, idx) => {
         var r = document.createElement("tr");
@@ -105,9 +103,8 @@ function EDD_UpdateTasksTable() {
 }
 
 function EDD_UpdateSchedule() {
-    // Clear current schedule table
-    EDD_Schedule_Tbody.innerHTML = "";
-    EDD_Schedule_Lateness_Tbody.innerHTML = "";
+    // Clear schedule + lateness
+    EDD_ClearTables(false, true, true);
     var EDD_New_Schedule = []
 
     if (!EDD_Tasks.length > 0) {
@@ -197,4 +194,16 @@ function EDD_UpdateSchedule() {
 
 
     EDD_Schedule_Lateness_Tbody.appendChild(r);
+}
+
+function EDD_ClearTables(tasks, schedule, lateness) {
+    if (tasks) {
+        EDD_Tasks_Tbody.innerHTML = "";
+    }
+    if (schedule) {
+        EDD_Schedule_Tbody.innerHTML = "";
+    }
+    if (lateness) {
+        EDD_Schedule_Lateness_Tbody.innerHTML = "";
+    }
 }
