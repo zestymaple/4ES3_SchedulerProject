@@ -31,12 +31,12 @@ var EDD_Schedule_Lateness_Tbody = document.getElementById('EDD_Schedule_Lateness
 
 
 window.addEventListener('load', (e) => {
-    // EDD_UpdateTasksTable();
-
     // Clear form fields
     EDD_AddTask_Form.reset();
     // Clear schedule + lateness
     EDD_ClearTables(true, true, true);
+
+    // EDD_UpdateTasksTable();
 });
 
 EDD_AddTask_Form.addEventListener('submit', (e) => {
@@ -47,7 +47,7 @@ EDD_AddTask_Form.addEventListener('submit', (e) => {
     // Get Last Task#
     // var lastTask = EDD_Tasks.length > 0 ? EDD_Tasks[EDD_Tasks.length - 1].t : 0;
     // Add the task to array
-    EDD_Tasks.push({ "ct": parseInt(formData.get('EDD_computationTime')), "dt": parseInt(formData.get('deadline')) })
+    EDD_Tasks.push({ "ct": parseInt(formData.get('EDD_computationTime')), "dt": parseInt(formData.get('EDD_deadline')) })
     // Clear form fields
     EDD_AddTask_Form.reset();
     // Refresh the table

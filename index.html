@@ -12,22 +12,23 @@
   </head>
   <body>
     <div class="container">
+        <h1 class="my-2">4ES3 - Scheduler Project</h1>
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="pills-EDD-tab" data-toggle="pill" href="#pills-EDD" role="tab" aria-controls="pills-EDD" aria-selected="true">EDD</a>
+              <a class="nav-link" id="pills-EDD-tab" data-toggle="pill" href="#pills-EDD" role="tab" aria-controls="pills-EDD" aria-selected="false">EDD</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="pills-EDF-tab" data-toggle="pill" href="#pills-EDF" role="tab" aria-controls="pills-EDF" aria-selected="false">EDF</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-cyclic-tab" data-toggle="pill" href="#pills-cyclic" role="tab" aria-controls="pills-cyclic" aria-selected="false">Cyclic</a>
+              <a class="nav-link active" id="pills-cyclic-tab" data-toggle="pill" href="#pills-cyclic" role="tab" aria-controls="pills-cyclic" aria-selected="true">Cyclic</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="pills-RM-tab" data-toggle="pill" href="#pills-RM" role="tab" aria-controls="pills-RM" aria-selected="false">RM</a>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-EDD" role="tabpanel" aria-labelledby="pills-EDD-tab">
+            <div class="tab-pane fade" id="pills-EDD" role="tabpanel" aria-labelledby="pills-EDD-tab">
                 <h1 class="my-2">Add Tasks</h1>
                 <form id="EDD_AddTask">
                     <div class="form-group">
@@ -36,9 +37,9 @@
                       <small id="EDD_computationTimeHelp" class="form-text text-muted">worst-case computation time</small>
                     </div>
                     <div class="form-group">
-                      <label for="deadline">Deadline</label>
-                      <input type="number" min="0" step="0.1" class="form-control" id="deadline" name="deadline" aria-describedby="deadlineHelp" required>
-                      <small id="deadlineHelp" class="form-text text-muted">when is the task due</small>
+                      <label for="EDD_deadline">Deadline</label>
+                      <input type="number" min="0" step="0.1" class="form-control" id="EDD_deadline" name="EDD_deadline" aria-describedby="EDD_deadlineHelp" required>
+                      <small id="EDD_deadlineHelp" class="form-text text-muted">when is the task due</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Task</button>
                     <button type="button" id="EDD_ClearTasks" class="btn btn-danger">Delete All</button>
@@ -80,8 +81,118 @@
                     </tbody>
               </table>
             </div>
-            <div class="tab-pane fade" id="pills-EDF" role="tabpanel" aria-labelledby="pills-EDF-tab">...</div>
-            <div class="tab-pane fade" id="pills-cyclic" role="tabpanel" aria-labelledby="pills-cyclic-tab">...</div>
+            <div class="tab-pane fade" id="pills-EDF" role="tabpanel" aria-labelledby="pills-EDF-tab">
+              <h1 class="my-2">Add Tasks</h1>
+              <form id="EDF_AddTask">
+                  <div class="form-group">
+                      <label for="EDF_arrivalTime">Arrival Time</label>
+                      <input type="number" min="0" step="0.1" class="form-control" id="EDF_arrivalTime" name="EDF_arrivalTime" aria-describedby="EDF_arrivalTimeHelp" required>
+                      <small id="EDF_arrivalTimeHelp" class="form-text text-muted">When does task enter queue?</small>
+                  </div>    
+                  <div class="form-group">
+                    <label for="EDF_computationTime">Computation Time</label>
+                    <input type="number" min="0" step="0.1" class="form-control" id="EDF_computationTime" name="EDF_computationTime" aria-describedby="EDF_computationTimeHelp" required>
+                    <small id="EDF_computationTimeHelp" class="form-text text-muted">worst-case computation time</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="EDF_deadline">Deadline</label>
+                    <input type="number" min="0" step="0.1" class="form-control" id="EDF_deadline" name="EDF_deadline" aria-describedby="EDF_deadlineHelp" required>
+                    <small id="EDF_deadlineHelp" class="form-text text-muted">when is the task due</small>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add Task</button>
+                  <button type="button" id="EDF_ClearTasks" class="btn btn-danger">Delete All</button>
+              </form>
+              <h1 class="my-2">Tasks</h1>
+              <table class="table table-bordered table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">AT</th>
+                      <th scope="col">CT</th>
+                      <th scope="col">DT</th>
+                      <th scope="col">Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody id="EDF_Tasks">
+                  </tbody>
+              </table>
+              <h1 class="my-2">Schedule</h1>
+              <button class="btn btn-primary my-2" id="EDF_calcSchedule">Calculate Schedule</button>
+              <table class="table table-bordered">
+                  <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Time</th>
+                        <th scope="col">Task</th>
+                      </tr>
+                    </thead>
+                    <tbody id="EDF_Schedule">
+                    </tbody>
+              </table>
+              <h1 class="my-2">Task Lateness</h1>
+              <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Task</th>
+                      <th scope="col">Lateness</th>
+                    </tr>
+                  </thead>
+                  <tbody id="EDF_Schedule_Lateness">
+                  </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade show active" id="pills-cyclic" role="tabpanel" aria-labelledby="pills-cyclic-tab">
+              <h1 class="my-2">Add Tasks</h1>
+              <form id="Cyclic_AddTask">
+                  <div class="form-group">
+                    <label for="Cyclic_computationTime">Computation Time</label>
+                    <input type="number" min="0" step="0.1" class="form-control" id="Cyclic_computationTime" name="Cyclic_computationTime" aria-describedby="Cyclic_computationTimeHelp" required>
+                    <small id="Cyclic_computationTimeHelp" class="form-text text-muted">worst-case computation time</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="Cyclic_period">Period</label>
+                    <input type="number" min="0" step="0.1" class="form-control" id="Cyclic_period" name="Cyclic_period" aria-describedby="Cyclic_periodHelp" required>
+                    <small id="Cyclic_periodHelp" class="form-text text-muted">what is the period of task</small>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add Task</button>
+                  <button type="button" id="Cyclic_ClearTasks" class="btn btn-danger">Delete All</button>
+              </form>
+              <h1 class="my-2">Tasks</h1>
+              <table class="table table-bordered table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">CT</th>
+                      <th scope="col">Period</th>
+                      <th scope="col">Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody id="Cyclic_Tasks">
+                  </tbody>
+              </table>
+              <h1 class="my-2">Schedule</h1>
+              <button class="btn btn-primary my-2" id="Cyclic_calcSchedule">Calculate Schedule</button>
+              <table class="table table-bordered">
+                  <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Time</th>
+                        <th scope="col">Task</th>
+                      </tr>
+                    </thead>
+                    <tbody id="Cyclic_Schedule">
+                    </tbody>
+              </table>
+              <h1 class="my-2">Task Lateness</h1>
+              <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Task</th>
+                      <th scope="col">Lateness</th>
+                    </tr>
+                  </thead>
+                  <tbody id="Cyclic_Schedule_Lateness">
+                  </tbody>
+              </table>              
+            </div>
             <div class="tab-pane fade" id="pills-RM" role="tabpanel" aria-labelledby="pills-RM-tab">...</div>
         </div>
     </div>
