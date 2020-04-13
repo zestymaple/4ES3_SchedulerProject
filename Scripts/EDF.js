@@ -1,23 +1,4 @@
-// var EDF_Tasks = [
-//     { "at": 0, "ct": 1, "dt": 2 },
-//     { "at": 0, "ct": 2, "dt": 5 },
-//     { "at": 2, "ct": 2, "dt": 4 },
-//     { "at": 3, "ct": 2, "dt": 10 },
-//     { "at": 6, "ct": 2, "dt": 9 },
-// ];
-
-var EDF_Tasks = [
-    { "at": 4, "ct": 3, "dt": 14 },
-    { "at": 1, "ct": 1, "dt": 2 },
-    { "at": 2, "ct": 1, "dt": 4 },
-    { "at": 3, "ct": 2, "dt": 7 },
-    { "at": 1, "ct": 1, "dt": 3 },
-    { "at": 2, "ct": 1, "dt": 5 },
-    { "at": 3, "ct": 3, "dt": 10 },
-    { "at": 4, "ct": 2, "dt": 16 },
-];
-
-// var EDF_Tasks = [];
+var EDF_Tasks = [];
 
 var EDF_AddTask_Form = document.getElementById('EDF_AddTask');
 var EDF_Tasks_Tbody = document.getElementById('EDF_Tasks');
@@ -45,7 +26,7 @@ EDF_AddTask_Form.addEventListener('submit', (e) => {
     // Get Last Task#
     // var lastTask = EDF_Tasks.length > 0 ? EDF_Tasks[EDF_Tasks.length - 1].t : 0;
     // Add the task to array
-    EDF_Tasks.push({ "at": parseInt(formData.get('EDF_arrivalTime')), "ct": parseInt(formData.get('EDF_computationTime')), "dt": parseInt(formData.get('EDF_deadline')) })
+    EDF_Tasks.push({ "at": parseFloat(formData.get('EDF_arrivalTime')), "ct": parseFloat(formData.get('EDF_computationTime')), "dt": parseFloat(formData.get('EDF_deadline')) })
     // Clear form fields
     EDF_AddTask_Form.reset();
     // Refresh the table

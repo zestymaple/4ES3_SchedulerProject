@@ -1,24 +1,3 @@
-// var EDD_Tasks = [
-//     {"ct": 1, "dt": 3},
-//     {"ct": 1, "dt": 10},
-//     {"ct": 1, "dt": 7},
-//     {"ct": 3, "dt": 8},
-//     {"ct": 2, "dt": 5}
-// ];
-
-// var EDD_Tasks = [
-//     { "ct": 2, "dt": 4 },
-//     { "ct": 3, "dt": 3 },
-//     { "ct": 2, "dt": 5 },
-//     { "ct": 1, "dt": 17 },
-//     { "ct": 4, "dt": 15 },
-//     { "ct": 1, "dt": 7 },
-//     { "ct": 3, "dt": 21 },
-//     { "ct": 1, "dt": 26 },
-//     { "ct": 2, "dt": 9 },
-//     { "ct": 3, "dt": 25 }
-// ];
-
 var EDD_Tasks = [];
 
 var EDD_AddTask_Form = document.getElementById('EDD_AddTask');
@@ -47,7 +26,7 @@ EDD_AddTask_Form.addEventListener('submit', (e) => {
     // Get Last Task#
     // var lastTask = EDD_Tasks.length > 0 ? EDD_Tasks[EDD_Tasks.length - 1].t : 0;
     // Add the task to array
-    EDD_Tasks.push({ "ct": parseInt(formData.get('EDD_computationTime')), "dt": parseInt(formData.get('EDD_deadline')) })
+    EDD_Tasks.push({ "ct": parseFloat(formData.get('EDD_computationTime')), "dt": parseFloat(formData.get('EDD_deadline')) })
     // Clear form fields
     EDD_AddTask_Form.reset();
     // Refresh the table
